@@ -31,6 +31,26 @@ struct node {
 		return anotherOne->data;
 	}
 
+	void insert(int p, float x) {
+		node* anotherOne = this;
+
+		for (int i = 1; i < p; i++) {
+			if (anotherOne->next != NULL) {
+				anotherOne = anotherOne->next;
+			} else {
+				throw "ERROR: index not in range";
+			}
+		}
+
+		node* temp;
+		temp = (node*)malloc(sizeof(node));
+		temp->data = anotherOne->data;
+		temp->next = anotherOne->next;
+
+		anotherOne->data = x;
+		anotherOne->next = temp;
+	}
+
 	node() {
 		data = 0;
 		next = NULL;
